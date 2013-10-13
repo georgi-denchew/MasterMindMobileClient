@@ -3,8 +3,7 @@
      data-layout="main-layout"
      data-title="Add Event"
      data-show="app.addEvent.init">
-
-    <div>
+    <div class="row">
         <label>Category</label>
         <select style="width:1px;" id="categories-list" data-role="dropdownlist"
                 data-bind="source: categories, events: {change: change}"
@@ -12,35 +11,35 @@
                 data-value-field="Id">
         </select>
     </div>
-    <div>
+    <div class="row">
         <label>
             Event Name
-            <input type="text" data-bind="value: name"/>
+            <input type="text" class="float-right" data-bind="value: name"/>
         </label>
     </div>
-    <div id="accociated-contacts">
+    <div class="row" id="accociated-contacts">
 
         <div id="add-contact">
-            <select id="contacts-list"></select>
-
             <input type="button"
                    data-role="button"
-                   class="button float-right"
+                   class="button"
                    data-bind="click: addContact"
                    value="Add Contact" />
+            
+            <select class="float-right" id="contacts-list"></select>
         </div>
     </div>
-    <div>
+    <div class="row">
          Set current position as event location <input type="checkbox" id="toLocate" data-role="switch"/>
     </div>
-    <div>
-         Event Date <input class="float-right" type="datetime-local" data-bind="value: startDate" />
+    <div class="row">
+         Event Date <input type="datetime-local" class="float-right" data-bind="value: startDate" />
     </div>
-    <div>
-         Event Duration <input type="time" class="float-right" data-bind="value: duration" />
+    <div class="row">
+         Event Duration <input class="float-right" type="time" data-bind="value: duration" />
     </div>
-    <div>
-         Event Description <textarea class="float-right" data-bind="value: description"></textarea>
+    <div class="row">
+         Event Description <textarea data-bind="value: description"></textarea>
     </div>
-    <button data-bind="click: addEvent">Add Event</button>
+    <button class="km-button" data-bind="click: addEvent">Add Event</button>
 </div>

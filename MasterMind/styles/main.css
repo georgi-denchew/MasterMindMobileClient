@@ -4,6 +4,10 @@ body, html {
     width:100%;
 }
 
+.row {
+    margin-top: 15px;
+}
+
 .float-right {
     float: right;
 }
