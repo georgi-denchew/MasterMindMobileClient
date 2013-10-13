@@ -20,9 +20,8 @@ var app = app || {};
             });
         },
         addContact: function () {
-            var name = $("#contacts-list>option:selected").text();
-            var number = $("#contacts-list").val();
-            
+            var name = $("#reminders-contacts-list>option:selected").text();
+            var number = $("#reminders-contacts-list").val();
             var contact = {
                 displayName: name,
                 phoneNumber: number
@@ -31,6 +30,7 @@ var app = app || {};
             var vmContacts = this.get("contacts");
             vmContacts.push(contact);
             this.set("contacts", vmContacts);
+
         },
         addReminder: function () {
             
@@ -76,16 +76,15 @@ var app = app || {};
         options.filter = "";
         options.multiple = true;
         var fields = ["displayName", "phoneNumbers"];
-        navigator.contacts.find(fields, onContactsSuccess, onContactsError, options);
+        navigator.contacts.find(fields, onSuccess, onError, options);
         
         viewModel.set("name", "");
         viewModel.set("description", "");
         viewModel.set("reminderImage", null);
-        viewModel.set("name", "");
-        
+        viewModel.set("name", "");        
     }
     
-    function onContactsSuccess(contacts) {
+    function onSuccess(contacts) {
         var contactsToDisplay = _.filter(contacts, function (contact) {
             return contact.displayName != null && contact.phoneNumbers;
         });
@@ -96,7 +95,7 @@ var app = app || {};
             contactsToDisplay[i].phoneNumber = contactsToDisplay[i].phoneNumbers[0].value;
         }
         
-        $("#contacts-list").kendoDropDownList({
+        $("#reminders-contacts-list").kendoDropDownList({
             dataTextField: "displayName",
             dataValueField: "phoneNumber",
             dataSource: contactsToDisplay,
@@ -104,7 +103,7 @@ var app = app || {};
         });
     }
     
-    function onContactsError() {
+    function onError() {
         alert('Unable to get contacts list');
     }
     

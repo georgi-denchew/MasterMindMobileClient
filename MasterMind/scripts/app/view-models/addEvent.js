@@ -13,8 +13,8 @@ var app = app || {};
         change: onCategoryChanged,
         getLocation: false,
         addContact: function () {
-            var name = $("#contacts-list>option:selected").text();
-            var number = $("#contacts-list").val();
+            var name = $("#events-contacts-list>option:selected").text();
+            var number = $("#events-contacts-list").val();
             
             var contact = {
                 displayName: name,
@@ -38,13 +38,15 @@ var app = app || {};
             };
             
             var toLocate = $("#toLocate").val();
-            console.log(toLocate);
             
-            navigator.geolocation.getCurrentPosition(function (position) {
-                debugger;
-                event.latitude = position.coords.latitude;
-                event.longitude = position.coords.longitude;
-            }, positionError, {timeout:5000, enableHighAccuracy:true});
+            if (toLocate == "on") {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    debugger;
+                    event.latitude = position.coords.latitude;
+                    event.longitude = position.coords.longitude;
+                }, positionError, {timeout:5000, enableHighAccuracy:true});
+            }
+            
             
             //DOESN'T GET TO SUCCESS HANDLER ?!?!
             app.dataPersister.events.create(event)
@@ -100,8 +102,7 @@ var app = app || {};
             contactsToDisplay[i].phoneNumber = contactsToDisplay[i].phoneNumbers[0].value;
         }
         
-        //USE UNDERSCORE JS
-        $("#contacts-list").kendoDropDownList({
+        $("#events-contacts-list").kendoDropDownList({
             dataTextField: "displayName",
             dataValueField: "phoneNumber",
             dataSource: contactsToDisplay,

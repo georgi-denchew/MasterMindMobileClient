@@ -7,6 +7,7 @@
     <div class="row">
         <label>Category</label>
         <select style="width:1px;" id="categories-list" data-role="dropdownlist"
+                class="contacts-list"
                 data-bind="source: categories, events: {change: change}"
                 data-text-field="Name"
                 data-value-field="Id">
@@ -23,23 +24,19 @@
         <div id="add-contact">
             <input type="button"
                    data-role="button"
-                   class="button"
                    data-bind="click: addContact"
                    value="Add Contact" />
             
-            <select class="float-right" id="contacts-list"></select>
+            <select class="contacts-list" id="reminders-contacts-list"></select>
         </div>
     </div>
     <div class="row">
-        Reminder Date
-        <input type="datetime-local" data-bind="value: toBeCompletedOn" />
+        Reminder Description <textarea class="textarea" data-bind="value: description"></textarea>
+    </div>
+    <div class="row">        
+        <button data-role="button" data-bind="click: addImage">Add Picture to Reminder</button>
     </div>
     <div class="row">
-        Reminder Description <textarea data-bind="value: description"></textarea>
+    <button data-role="button" data-bind="click: addReminder">Add Reminder</button>
     </div>
-    <div class="row">
-        
-        <button class="km-button" data-bind="click: addImage">Add Picture to Reminder</button>
-    </div>
-    <button class="km-button" data-bind="click: addReminder">Add Reminder</button>
 </div>
