@@ -36,9 +36,13 @@ var app = app || {};
                 categoryId: this.get("selectedCategory").Id
             };
             
-            this.set("getLocation", $("#toLocate")[0].checked);
+            debugger;
             
-            if (this.get("getLocation")) {
+            
+            var toLocate = $("#toLocate")[0].checked;
+            console.log(toLocate)
+            
+            if (toLocate) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     event.latitude = position.coords.latitude;
                     event.longitude = position.coords.longitude;
@@ -50,6 +54,14 @@ var app = app || {};
             .then(function () {
                 debugger;
                 app.application.navigate("views/events-view.html#events-view");
+                this.set("name", "");
+                this.set("contacts", []);
+                this.set("latitude", null);
+                this.set("longitude", null);
+                this.set("description", "");
+                this.set("startDate", new Date());
+                this.set("duration", "1:00");
+                
             }, function () {
                 app.application.navigate("views/events-view.html#events-view");
             });

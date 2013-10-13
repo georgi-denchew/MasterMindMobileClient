@@ -6,6 +6,7 @@ var app = app || {};
         contacts: [],
         categories:[],
         selectedCategory: null,
+        categoryId: 0,
         toBeCompletedOn: new Date(),
         description: "",
         change: onCategoryChanged,
@@ -32,15 +33,16 @@ var app = app || {};
             this.set("contacts", vmContacts);
         },
         addReminder: function () {
-            /*var reminder = {
-                name: this.get("name"),
-                contacts: this.get("contacts"),
-                description: this.get("description"),
-                
-                categoryId: this.get("selectedCategory").Id
-            };*/
             
-            //DOESN'T GET TO SUCCESS HANDLER ?!?!
+            var networkState = navigator.connection.type;
+            
+            if (networkState == "2g" && this.get("reminderImage") != null) {
+            
+                alert("Sending an image is not allowed through 2G NETWORK");
+            }
+            
+            this.set("categoryId", this.get("selectedCategory").Id);
+            debugger;
             app.dataPersister.reminders.create(this)
             .then(function () {
                 debugger;
