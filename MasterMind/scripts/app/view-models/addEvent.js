@@ -2,10 +2,11 @@ var app = app || {};
 
 (function(a) {
     var viewModel = kendo.observable({
-        name: "name",
+        name: "",
         contacts: [],
         categories:[],
         selectedCategory: null,
+        categoryId: 0,
         startDate: new Date(),
         duration: "1:00",
         description: "",
@@ -14,7 +15,6 @@ var app = app || {};
         addContact: function () {
             var name = $("#contacts-list>option:selected").text();
             var number = $("#contacts-list").val();
-            
             
             var contact = {
                 displayName: name,
@@ -29,41 +29,32 @@ var app = app || {};
             var event = {
                 name: this.get("name"),
                 contacts: this.get("contacts"),
-                latitude: null,
-                longitude: null,
+                latitude: "",
+                longitude: "",
                 description: this.get("description"),
                 startDate: this.get("startDate"),
                 duration: this.get("duration"),
-                categoryId: this.get("selectedCategory").Id
+                categoryId: this.get("categoryId")
             };
             
-            debugger;
-            
-            
-            var toLocate = $("#toLocate")[0].checked;
+            var toLocate = $("#toLocate").val();
             console.log(toLocate);
             
-            if (toLocate) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    event.latitude = position.coords.latitude;
-                    event.longitude = position.coords.longitude;
-                }, positionError);
-            }
+            navigator.geolocation.getCurrentPosition(function (position) {
+                debugger;
+                event.latitude = position.coords.latitude;
+                event.longitude = position.coords.longitude;
+            }, positionError, {timeout:5000, enableHighAccuracy:true});
             
             //DOESN'T GET TO SUCCESS HANDLER ?!?!
             app.dataPersister.events.create(event)
             .then(function () {
-                debugger;
+                navigator.notification.vibrate(300);
+                console.log("success");
                 app.application.navigate("views/events-view.html#events-view");
-                this.set("name", "");
-                this.set("contacts", []);
-                this.set("latitude", null);
-                this.set("longitude", null);
-                this.set("description", "");
-                this.set("startDate", new Date());
-                this.set("duration", "1:00");
-                
-            }, function () {
+            }, function (e) {
+                console.log(e);
+                navigator.notification.vibrate(300);
                 app.application.navigate("views/events-view.html#events-view");
             });
         }
@@ -79,7 +70,7 @@ var app = app || {};
         app.dataPersister.categories.all()
         .then(function (categories) {
             viewModel.set("categories", categories);
-            viewModel.set("selectedCategory", categories[0]);
+            viewModel.set("categoryId", categories[0].Id);
         });
         
         var options = new ContactFindOptions();
@@ -87,6 +78,13 @@ var app = app || {};
         options.multiple = true;
         var fields = ["displayName", "phoneNumbers"];
         //navigator.contacts.find(fields, onSuccess, onError, options);
+        
+        viewModel.set("name", "");
+        viewModel.set("contacts", []);
+        viewModel.set("description", "");
+        viewModel.set("startDate", new Date());
+        viewModel.set("duration", "1:00");
+        $("#toLocate")[0].checked = false;
     }
     
     function onSuccess(contacts) {
@@ -97,9 +95,6 @@ var app = app || {};
         var length = contactsToDisplay.length;
             
         for (i = 0; i < length; i++) {
-            /*$("#selected-contact").append("<div>" +
-            contactsToDisplay[i].displayName + " numbers: " +
-            contactsToDisplay[i].phoneNumbers[0].value +  "</div");*/
             contactsToDisplay[i].phoneNumber = contactsToDisplay[i].phoneNumbers[0].value;
         }
         
@@ -116,15 +111,10 @@ var app = app || {};
         alert('Unable to get contacts list');
     }
     
-    //TO BE CHANGED
     function onCategoryChanged(e) {
-        console.log(e.sender._selectedValue);
+        viewModel.set("categoryId", e.sender._selectedValue);
         
-        httpRequest.getJSON(app.servicesBaseUrl + "categories/" + e.sender._selectedValue)
-        .then(function(category) {
-            viewModel.set("selectedCategory", category);
-            console.log(category);
-        });
+        console.log(viewModel.get("categoryId"));
     }
     
     debugger;

@@ -1,0 +1,32 @@
+<div data-role="view" id="reminder-details-view" data-id="reminder-details-view"
+     data-title="Reminder Details" data-layout="main-layout"
+     data-show="app.reminderDetails.init">
+
+    <ul data-role="listview" data-bind="source: reminders" data-template="remindersDetails-template"></ul>
+
+</div>
+
+<script id="remindersDetails-template" type="text/x-kendo-template">
+    <li>
+        <span>Name:</span> #:name #</li>
+    <li>
+        <span>Description:</span> #:description #</li>
+    <li>
+        <span>Date:</span> #:toBeCompletedOn #
+    
+    </li>
+    <li>
+        <ul>
+            # for (var i = 0; i < contacts.length; i++) {#
+                <li>#=contats[i].displayName#</li>
+            #}#
+        </ul>
+    </li>
+    
+    # if (reminderImage != null) {# 
+    <li>
+    <div>Reminder Image</div>
+        <img style="width: 200px; height: 200px;" src="data:image/png;base64, #:reminderImage# " />
+    </li>
+    #}#
+</script>

@@ -7,7 +7,7 @@
     <div>
         <label>Category</label>
         <select style="width:1px;" id="categories-list" data-role="dropdownlist"
-                data-bind="source: categories"
+                data-bind="source: categories, events: {change: change}"
                 data-text-field="Name"
                 data-value-field="Id">
         </select>

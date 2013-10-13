@@ -37,17 +37,19 @@ var app = app || {};
             var networkState = navigator.connection.type;
             
             if (networkState == "2g" && this.get("reminderImage") != null) {
-            
                 alert("Sending an image is not allowed through 2G NETWORK");
+                return;
             }
             
-            this.set("categoryId", this.get("selectedCategory").Id);
-            debugger;
+            
             app.dataPersister.reminders.create(this)
             .then(function () {
                 debugger;
+                navigator.notification.vibrate(300);
                 app.application.navigate("views/reminders-view.html#reminders-view");
             }, function () {
+                debugger;
+                navigator.notification.vibrate(300);
                 app.application.navigate("views/reminders-view.html#reminders-view");
             });
         }
@@ -67,7 +69,7 @@ var app = app || {};
         app.dataPersister.categories.all()
         .then(function (categories) {
             viewModel.set("categories", categories);
-            viewModel.set("selectedCategory", categories[0]);
+            viewModel.set("categoryId", categories[0].Id);
         });
         
         var options = new ContactFindOptions();
@@ -75,6 +77,12 @@ var app = app || {};
         options.multiple = true;
         var fields = ["displayName", "phoneNumbers"];
         //navigator.contacts.find(fields, onContactsSuccess, onContactsError, options);
+        
+        viewModel.set("name", "");
+        viewModel.set("description", "");
+        viewModel.set("reminderImage", null);
+        viewModel.set("name", "");
+        
     }
     
     function onContactsSuccess(contacts) {
@@ -85,13 +93,9 @@ var app = app || {};
         var length = contactsToDisplay.length;
             
         for (i = 0; i < length; i++) {
-            /*$("#selected-contact").append("<div>" +
-            contactsToDisplay[i].displayName + " numbers: " +
-            contactsToDisplay[i].phoneNumbers[0].value +  "</div");*/
             contactsToDisplay[i].phoneNumber = contactsToDisplay[i].phoneNumbers[0].value;
         }
         
-        //USE UNDERSCORE JS
         $("#contacts-list").kendoDropDownList({
             dataTextField: "displayName",
             dataValueField: "phoneNumber",
@@ -104,15 +108,11 @@ var app = app || {};
         alert('Unable to get contacts list');
     }
     
-    //TO BE CHANGED
+
     function onCategoryChanged(e) {
-        console.log(e.sender._selectedValue);
+        viewModel.set("categoryId", e.sender._selectedValue);
         
-        httpRequest.getJSON(app.servicesBaseUrl + "categories/" + e.sender._selectedValue)
-        .then(function(category) {
-            viewModel.set("selectedCategory", category);
-            console.log(category);
-        });
+        console.log(viewModel.get("categoryId"));
     }
     
     debugger;

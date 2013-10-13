@@ -7,7 +7,7 @@
     <div>
         <label>Category</label>
         <select style="width:1px;" id="categories-list" data-role="dropdownlist"
-                data-bind="source: categories"
+                data-bind="source: categories, events: {change: change}"
                 data-text-field="Name"
                 data-value-field="Id">
         </select>
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div>
-         Set current position as event location <input type="checkbox" id="toLocate" data-bind="checked: getLocation" data-role="switch"/>
+         Set current position as event location <input type="checkbox" id="toLocate" data-role="switch"/>
     </div>
     <div>
          Event Date <input type="datetime-local" data-bind="value: startDate" />

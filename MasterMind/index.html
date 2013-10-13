@@ -24,6 +24,8 @@
         <script src="scripts/app/view-models/addEvent.js"></script>
         <script src="scripts/app/view-models/reminders.js"></script>
         <script src="scripts/app/view-models/addReminder.js"></script>
+        <script src="scripts/app/view-models/reminderDetails.js"></script>
+        <script src="scripts/app/view-models/eventDetails.js"></script>
         <script src="scripts/app/view-models/categories.js"></script>
         <script src="scripts/app/view-models/login.js"></script>
         <script src="scripts/app.js"></script>
@@ -70,18 +72,6 @@
                 </div>
             </footer>
         </div>
-
-        <script id="categories-template" type="text/x-kendo-template">
-            <li>
-                <a class="button" style="display:block;" href="\#" data-category-id="#: Id #" data-bind="events: {click: selectCategory}">#: Name #</a>
-            </li>
-        </script>
-
-        <script id="events-template" type="text/x-kendo-template">
-            <li>
-                <a class="button" style="display:block;" href="\#" >#: name #</a>
-            </li>
-        </script>
     </body>
     <!--<body>
     <div id="tabstrip-home" 

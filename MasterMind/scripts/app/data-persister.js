@@ -67,10 +67,12 @@ window.persisters = (function () {
 
 		        return httpRequester.putJSON(this.apiUrl + "users/logout", {}, headers)
 		    .then(function () {
-		        clearLocalStorage();
+                localStorage.set("username", null);
+                localStorage.set("sessionKey", null);
 
 		    }, function () {
-		        clearLocalStorage();
+		        localStorage.set("username", null);
+                localStorage.set("sessionKey", null);
 		    });
 		    }
 		},
@@ -127,46 +129,6 @@ window.persisters = (function () {
 
 	        return httpRequester.postJSON(this.apiUrl + "/create", eventsModel, headers);
 	    },
-        
-	    all: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/all", headers);
-	    },
-
-	    today: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/today", headers);
-	    },
-
-	    comming: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/comming", headers);
-	    },
-
-	    current: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/current", headers);
-	    },
-
-	    getByDate: function (date) {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-	        debugger;
-	        return httpRequester.getJSON(this.apiUrl + "?date=" + date, headers);
-	    },
 	});
     
     var RemindersPersister = Class.create({
@@ -180,46 +142,6 @@ window.persisters = (function () {
 	        };
 
 	        return httpRequester.postJSON(this.apiUrl + "/create", remindersModel, headers);
-	    },
-        
-	    all: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/all", headers);
-	    },
-
-	    today: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/today", headers);
-	    },
-
-	    comming: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/comming", headers);
-	    },
-
-	    current: function () {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-
-	        return httpRequester.getJSON(this.apiUrl + "/current", headers);
-	    },
-
-	    getByDate: function (date) {
-	        var headers = {
-	            "X-accessToken": localStorage.getItem("sessionKey")
-	        };
-	        debugger;
-	        return httpRequester.getJSON(this.apiUrl + "?date=" + date, headers);
 	    },
 	})    
     

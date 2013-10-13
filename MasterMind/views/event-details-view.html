@@ -1,0 +1,43 @@
+<div data-role="view" id="reminders-details-view" data-id="reminders-details-view"
+     data-title="Event Details" data-layout="main-layout"
+     data-show="app.eventDetails .init">
+
+    <ul data-role="listview" data-bind="source: events" data-template="eventsDetails-template"></ul>
+
+</div>
+
+<script id="eventsDetails-template" type="text/x-kendo-template">
+    <li>
+        <span>Name:</span> #:name #</li>
+    <li>
+        <span>Description:</span> #:description #</li>
+    <li>
+        <span>Date:</span> #:startDate #
+    
+    </li>
+    <li>
+        <span>Duration:</span> #:duration #
+    
+    </li>
+    <li>
+        Accociated Contacts:
+        <ul>
+            # for (var i = 0; i < contacts.length; i++) {#
+                <li>#=contats[i].displayName#</li>
+            #}#
+        </ul>
+    </li>
+    
+    
+    # if (latitude != null && longitude != null && navigator.connection.type != "2g") {# 
+    <li>        
+        <img id="location-viz" width="300" height="300" 
+    src="http://maps.googleapis.com/maps/api/staticmap?center=#:latitude#,#:longitude#&size=200x200&&sensor=true&zoom=12"
+    alt="Google Static Map" />
+    </li>
+    #}#
+</script>
+
+<script>
+    
+    

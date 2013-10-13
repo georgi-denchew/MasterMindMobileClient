@@ -5,7 +5,8 @@ var app = app || {};
         categories:[],
         reminders:[],
         selectedCategory:null,
-        change: onCategoryChanged
+        change: onCategoryChanged,
+        reminderDetails: reminderDetails,
     });
     
     function init(e) {
@@ -20,6 +21,13 @@ var app = app || {};
                 viewModel.set("selectedCategory", category);
             });
         });
+    }
+    
+    function reminderDetails (e) {
+        console.log (e);
+        var reminder = JSON.stringify(e.data);
+        localStorage.setItem("reminderDetails", reminder);
+        app.application.navigate("views/reminder-details-view.html#reminder-details-view");
     }
     
     function onCategoryChanged(e) {
