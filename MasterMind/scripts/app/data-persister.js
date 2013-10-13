@@ -65,14 +65,14 @@ window.persisters = (function () {
 		            "X-sessionKey": localStorage.getItem("sessionKey")
 		        };
 
-		        return httpRequester.putJSON(this.apiUrl + "users/logout", {}, headers)
+		        return httpRequester.putJSON(this.apiUrl + "/logout", {}, headers)
 		    .then(function () {
-                localStorage.set("username", null);
-                localStorage.set("sessionKey", null);
+                localStorage.setItem("username", null);
+                localStorage.setItem("sessionKey", null);
 
 		    }, function () {
-		        localStorage.set("username", null);
-                localStorage.set("sessionKey", null);
+		        localStorage.setItem("username", null);
+                localStorage.setItem("sessionKey", null);
 		    });
 		    }
 		},

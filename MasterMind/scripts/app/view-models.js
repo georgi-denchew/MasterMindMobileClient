@@ -4,15 +4,14 @@ var app = app || {};
 window.vmFactory = (function () {
     var data = null;
 
-    getLoginViewModel = kendo.data.ObservableObject.extend ({
-        username: "user",
-        password: "pass",
+    getLoginViewModel = kendo.data.ObservableObject.extend({
+        username: "",
+        password: "",
         login: function () {
             console.log(data);
             data.users.login(this.get("username"), this.get("password"))
             .then(function () {
                 app.application.navigate("views/events-view.html#events-view");
-                
             }, function () {
                 if (errorCallback) {
                     errorCallback();
@@ -20,15 +19,26 @@ window.vmFactory = (function () {
             })
         },
         
-        /*isLoggedIn: function () {
+        hideForm: function () {
+            console.log("hide");
+            $("#login-form").hide();
+            $("#welcome-message").show();
+        },
+        
+        showForm: function () {
+            $("#login-form").show();
+            $("#welcome-message").hide();
+        },
+        
+        isLoggedIn: function () {
             var sessionKey = localStorage.sessionKey;
             
-            if (sessionKey != null && sessionKey != ""){
+            if (sessionKey != null && sessionKey != "") {
                 return true;
             }
             
             return false;
-        },*/
+        },
 
         register: function () {
             console.log(this.get("username") + " " + this.get("password"));
@@ -36,9 +46,17 @@ window.vmFactory = (function () {
             .then(function () {
                 app.application.navigate("views/events-view.html#events-view");
             });
+        },
+        
+        logout: function () {
+            var that = this;
+            data.users.logout().then(function () {
+                that.showForm();
+            }, function () {
+                that.showForm();
+            });
         }
     });
-
 
     return {
 

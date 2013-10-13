@@ -9,8 +9,8 @@
                 data-text-field="Name"
                 data-value-field="Id">
         </select>
+    <a data-role="button" class="button add-button" href="views/add-event-view.html#add-event-view">Add event</a>
     </div>
-    <a data-role="button" class="button" href="views/add-event-view.html#add-event-view">Add event</a>
 
     <div id="events">
         <h1 data-bind="text: selectedCategory.Name" data-align="center"></h1>
@@ -20,6 +20,6 @@
 
 <script id="events-template" type="text/x-kendo-template">
     <li>
-        <a class="button" style="display:block;" data-bind ="events: {click: eventDetails}" href="\#" >#: name #</a>
+        <a class="button event-anchor" style="display:block;" data-bind ="events: {click: eventDetails}" href="\#" >#: name #</a>
     </li>
 </script>

@@ -31,16 +31,11 @@
         <script src="scripts/app.js"></script>
     </head>
     <body>
-
-        <!--<div id="home-view" data-id="home-view" data-role="view"
-        data-layout="main-layout" data-title="Home">
-        This is the home view
-        </div>-->
-
+        
         <div  data-role="view" id="home-view" data-id="home-view"
               data-layout="main-layout" data-title="Authenticate"            
               data-model="vmFactory.getLoginVM">
-            <div data-bind= "invisible: isLoggedIn">
+            <div id="login-form" data-bind= "invisible: isLoggedIn">
                 <ul data-role="listview" data-style="inset">
                     <li>
                         <label for="username">Username:</label>
@@ -51,16 +46,19 @@
                         <input type="password" id="password" data-bind="value: password" />
                     </li>
                 </ul>
-                <a data-click="closeModalViewLogin"
-                   id="login" data-role="button" data-bind="events: {click: login }" class="login-button">Login</a>
-                <a data-click="closeModalViewLogin"
-                   id="register" data-role="button" data-bind="events: {click: register}" class="login-button">Register</a>
+                <a id="login" data-role="button" data-bind="events: {click: login }" class="login-button">Login</a>
+                <a id="register" data-role="button" data-bind="events: {click: register}" class="login-button">Register</a>
+            </div>
+            <div id="welcome-message" data-bind="visible: isLoggedIn">
+                <span>Welcome, </span> <span data-bind="text: username"></span>
+                <a class="login-button" href="#" data-bind="events: {click: logout}">Logout</a>
             </div>
         </div>
 
         <div data-role="layout" id="main-layout" data-id="main-layout">
             <header data-role="header">
                 <div data-role="navbar">
+                    <a style="font-size: 0.4em" data-role="backbutton">Back</a>
                     <span data-role="view-title"></span>
                 </div>
             </header>

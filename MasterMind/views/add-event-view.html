@@ -25,7 +25,7 @@
 
             <input type="button"
                    data-role="button"
-                   class="button"
+                   class="button float-right"
                    data-bind="click: addContact"
                    value="Add Contact" />
         </div>
@@ -34,13 +34,13 @@
          Set current position as event location <input type="checkbox" id="toLocate" data-role="switch"/>
     </div>
     <div>
-         Event Date <input type="datetime-local" data-bind="value: startDate" />
+         Event Date <input class="float-right" type="datetime-local" data-bind="value: startDate" />
     </div>
     <div>
-         Event Duration <input type="time" data-bind="value: duration" />
+         Event Duration <input type="time" class="float-right" data-bind="value: duration" />
     </div>
     <div>
-         Event Description <textarea data-bind="value: description"></textarea>
+         Event Description <textarea class="float-right" data-bind="value: description"></textarea>
     </div>
     <button data-bind="click: addEvent">Add Event</button>
 </div>

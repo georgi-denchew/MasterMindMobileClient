@@ -13,15 +13,8 @@ var app = app || {};
         reminders.push(reminder);
         viewModel.set("reminders", reminders);
         
-        /*viewModel.set("name", reminder.name);
-        viewModel.set("description", reminder.description);
-        viewModel.set("contacts", reminder.contacts);
-        viewModel.set("reminderImage", reminder.reminderImage);
-        viewModel.set("toBeCompletedOn", reminder.toBeCompletedOn);*/
-        
         kendo.bind(e.view.element, viewModel);
-    }
-    
+    }    
     
     a.reminderDetails = {
         init:init

@@ -23,7 +23,7 @@
         Accociated Contacts:
         <ul>
             # for (var i = 0; i < contacts.length; i++) {#
-                <li>#=contats[i].displayName#</li>
+                <li>#=contacts[i].displayName#</li>
             #}#
         </ul>
     </li>
@@ -32,12 +32,8 @@
     # if (latitude != null && longitude != null && navigator.connection.type != "2g") {# 
     <li>        
         <img id="location-viz" width="300" height="300" 
-    src="http://maps.googleapis.com/maps/api/staticmap?center=#:latitude#,#:longitude#&size=200x200&&sensor=true&zoom=12"
+    src="http://maps.googleapis.com/maps/api/staticmap?center=#:latitude#,#:longitude#&size=200x200&&sensor=true&zoom=11"
     alt="Google Static Map" />
     </li>
     #}#
 </script>
-
-<script>
-    
-    
