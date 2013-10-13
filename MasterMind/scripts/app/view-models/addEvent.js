@@ -15,6 +15,7 @@ var app = app || {};
             var name = $("#contacts-list>option:selected").text();
             var number = $("#contacts-list").val();
             
+            
             var contact = {
                 displayName: name,
                 phoneNumber: number
@@ -40,7 +41,7 @@ var app = app || {};
             
             
             var toLocate = $("#toLocate")[0].checked;
-            console.log(toLocate)
+            console.log(toLocate);
             
             if (toLocate) {
                 navigator.geolocation.getCurrentPosition(function (position) {
