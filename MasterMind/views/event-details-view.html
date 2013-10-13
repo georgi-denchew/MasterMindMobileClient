@@ -12,21 +12,22 @@
     <li>
         <span>Description:</span> #:description #</li>
     <li>
-        <span>Date:</span> #:startDate #
+        <span>Date:</span> #:startDate.toString("yyyy mm dd") #
     
     </li>
     <li>
         <span>Duration:</span> #:duration #
     
     </li>
-    <li>
-        Accociated Contacts:
+    # if (contacts.length > 0) {#
+    <li>Accociated Contacts
         <ul>
             # for (var i = 0; i < contacts.length; i++) {#
                 <li>#=contacts[i].displayName#</li>
             #}#
         </ul>
     </li>
+    #}#
     
     
     # if (latitude != null && longitude != null && navigator.connection.type != "2g") {# 

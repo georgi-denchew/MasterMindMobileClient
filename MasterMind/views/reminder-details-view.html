@@ -15,14 +15,15 @@
         <span>Date:</span> #:toBeCompletedOn #
     
     </li>
-    <li>
+    # if (contacts.length > 0) {#
+    <li>Accociated Contacts
         <ul>
             # for (var i = 0; i < contacts.length; i++) {#
-                <li>#=contats[i].displayName#</li>
+                <li>#=contacts[i].displayName#</li>
             #}#
         </ul>
     </li>
-    
+    #}#
     # if (reminderImage != null) {# 
     <li>
     <div>Reminder Image</div>
