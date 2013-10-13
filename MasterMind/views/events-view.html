@@ -1,0 +1,19 @@
+<div data-role="view" id="events-view" data-id="events-view"
+     data-title="Events" data-layout="main-layout"
+     data-show="app.events.init">
+    
+    <div id="categories-container">
+                <label>Category</label>
+                <select style="width:1px;" id="categories-list" data-role="dropdownlist"
+                        data-bind="source: categories, events: { change: change}"
+                        data-text-field="Name"
+                        data-value-field="Id">
+                </select>
+                </div>
+        <a data-role="button" class="button" href="views/add-event-view.html#add-event-view">Add event</a>
+    
+    <div id="events">
+        <h1 data-bind="text: selectedCategory.Name" data-align="center"></h1>
+        <ul data-role="listview" data-bind="source: selectedCategory.Events" data-template="events-template"></ul>
+    </div>
+</div>

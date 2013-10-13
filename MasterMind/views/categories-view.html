@@ -1,0 +1,31 @@
+<!--<div data-role="view" id="categories-view" data-show="mobileListViewDataBindInitFlat" data-title="ListView" data-layout="main-layout">
+    <ul id="flat-listview"></ul>
+</div>
+<script>
+    var flatData = [ "Sashimi salad", "Chirashi sushi", "Seaweed salad", "Edamame", "Miso soup", "Maguro", "Shake", "Shiromi", "Tekka maki", "Hosomaki Mix", "California rolls", "Seattle rolls", "Spicy Tuna rolls", "Ebi rolls", "Chicken Teriyaki", "Salmon Teriyaki", "Gohan", "Tori Katsu", "Yaki Udon" ];
+
+    function mobileListViewDataBindInitFlat() {
+        $("#flat-listview").kendoMobileListView({ dataSource: flatData });
+    }
+</script>
+-->
+
+
+<div data-role="view" id="categories-view" data-id="categories-view"
+     data-layout="main-layout" data-title="Categories"
+     data-show="app.categories.init">
+    
+    <ul data-role="listview" data-style="inset" data-bind="source: categories" data-template="categories-template"></ul>
+    
+    <!--<div id="categories-holder">
+        <select id="categories-list" data-role="dropdownlist"
+                data-bind="source: categories, events: { change: change}"
+                data-text-field="Name"
+                data-value-field="Id">
+        </select>
+        <div id="category-info">
+            <h1 data-bind="text: selectedCategory.Name" data-align="center"></h1>            
+            <ul data-role="listview" data-bind="source: selectedCategory.Places" data-template="place-template"></ul>                
+        </div>
+    </div>-->
+</div>
