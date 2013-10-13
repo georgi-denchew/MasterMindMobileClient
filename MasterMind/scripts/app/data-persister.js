@@ -65,7 +65,7 @@ window.persisters = (function () {
 		            "X-sessionKey": localStorage.getItem("sessionKey")
 		        };
 
-		        return httpRequester.putJSON(this.apiUrl + "/logout", {}, headers)
+		        return httpRequester.putJSON(this.apiUrl + "logout", {}, headers)
 		    .then(function () {
                 localStorage.setItem("username", null);
                 localStorage.setItem("sessionKey", null);

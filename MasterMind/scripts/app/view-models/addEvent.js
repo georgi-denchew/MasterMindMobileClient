@@ -84,7 +84,7 @@ var app = app || {};
         viewModel.set("description", "");
         viewModel.set("startDate", new Date());
         viewModel.set("duration", "1:00");
-        //$("#toLocate")[0].checked = false;
+        $("#toLocate")[0].checked = false;
         
         $("#listview").kendoMobileListView();
     }

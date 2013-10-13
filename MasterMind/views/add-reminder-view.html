@@ -4,7 +4,7 @@
      data-title="Add Reminder"
      data-show="app.addReminder.init">
 
-    <div>
+    <div class="row">
         <label>Category</label>
         <select style="width:1px;" id="categories-list" data-role="dropdownlist"
                 data-bind="source: categories, events: {change: change}"
@@ -12,34 +12,34 @@
                 data-value-field="Id">
         </select>
     </div>
-    <div>
+    <div class="row">
         <label>
             Reminder Name
-            <input type="text" data-bind="value: name"/>
+            <input class="float-right" type="text" data-bind="value: name"/>
         </label>
     </div>
-    <div id="accociated-contacts">
+    <div class="row" id="accociated-contacts">
 
         <div id="add-contact">
-            <select id="contacts-list"></select>
-
             <input type="button"
                    data-role="button"
                    class="button"
                    data-bind="click: addContact"
                    value="Add Contact" />
+            
+            <select class="float-right" id="contacts-list"></select>
         </div>
     </div>
-    <div>
+    <div class="row">
         Reminder Date
         <input type="datetime-local" data-bind="value: toBeCompletedOn" />
     </div>
-    <div>
+    <div class="row">
         Reminder Description <textarea data-bind="value: description"></textarea>
     </div>
-    <div>
-        Add Picture to Reminder
-        <button data-bind="click: addImage">Take Picture</button>
+    <div class="row">
+        
+        <button class="km-button" data-bind="click: addImage">Add Picture to Reminder</button>
     </div>
-    <button data-bind="click: addReminder">Add Reminder</button>
+    <button class="km-button" data-bind="click: addReminder">Add Reminder</button>
 </div>

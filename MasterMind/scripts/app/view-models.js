@@ -33,7 +33,7 @@ window.vmFactory = (function () {
         isLoggedIn: function () {
             var sessionKey = localStorage.sessionKey;
             
-            if (sessionKey != null && sessionKey != "") {
+            if (sessionKey != null && sessionKey != "" && sessionKey != "null") {
                 return true;
             }
             
