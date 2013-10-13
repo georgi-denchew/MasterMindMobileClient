@@ -76,7 +76,7 @@ var app = app || {};
         options.filter = "";
         options.multiple = true;
         var fields = ["displayName", "phoneNumbers"];
-        //navigator.contacts.find(fields, onContactsSuccess, onContactsError, options);
+        navigator.contacts.find(fields, onContactsSuccess, onContactsError, options);
         
         viewModel.set("name", "");
         viewModel.set("description", "");

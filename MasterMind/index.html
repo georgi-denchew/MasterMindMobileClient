@@ -35,7 +35,7 @@
         <div  data-role="view" id="home-view" data-id="home-view"
               data-layout="main-layout" data-title="Authenticate"            
               data-model="vmFactory.getLoginVM">
-            <div id="login-form" data-bind= "invisible: isLoggedIn">
+            <div id="login-form">
                 <ul data-role="listview" data-style="inset">
                     <li>
                         <label for="username">Username:</label>
@@ -49,10 +49,10 @@
                 <a id="login" data-role="button" data-bind="events: {click: login }" class="login-button">Login</a>
                 <a id="register" data-role="button" data-bind="events: {click: register}" class="login-button">Register</a>
             </div>
-            <div id="welcome-message" data-bind="visible: isLoggedIn">
+            <!--<div id="welcome-message" data-bind="visible: isLoggedIn">
                 <span>Welcome, </span> <span data-bind="text: username"></span>
                 <a class="km-button" href="#" data-bind="events: {click: logout}">Logout</a>
-            </div>
+            </div>-->
         </div>
 
         <div data-role="layout" id="main-layout" data-id="main-layout">
